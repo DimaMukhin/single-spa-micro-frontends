@@ -21,9 +21,14 @@ module.exports = {
                 use: ['style-loader', 'css-loader']
             },
             {
-                test: /\.js$/,
-                exclude: [path.resolve(__dirname, 'node_modules')],
-                loader: 'babel-loader',
+                test: /\.m?js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env']
+                    }
+                }
             },
             {
                 // This plugin will allow us to use html templates when we get to the angularJS app
